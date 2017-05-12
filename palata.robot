@@ -143,8 +143,8 @@ Login
    Wait Until Page Contains  Заявка на торги  30
    ${drop_id}=  Catenate   SEPARATOR=   lot_  ${PALATA_LOT_ID}
    ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}  _publish_lot
-   Клацнути по випадаючому списку   ${drop_id}
-   Виконати дію   ${action_id}
+   Click Element   id=${drop_id}
+   Click Element   id=${action_id}
    Wait Until Page Contains   Запис знаходиться в стані очікування публікації в ЦБД   60
    Перевірити та сховати повідомлення
    Wait Until Element Is Visible   xpath=//a[contains(@href,'${PALATA_LOT_ID}')]   15
@@ -154,7 +154,7 @@ Login
    [return]   ${ua_id}
 
 Додати предмет
-  [Arguments]   ${item}   ${index}
+  [Arguments]   ${item}
   ${description_class}=   Get From Dictionary   ${item.classification}   description
   ${description}=   Get From Dictionary   ${item}   description
   ${cav_id}=        Get From Dictionary   ${item.classification}   id
@@ -185,7 +185,7 @@ Login
   Wait Until Element Is Visible   xpath=//*[contains(text(), 'Додати')]   20
   Click Element   xpath=//*[contains(text(), 'Додати')]
   Wait Until Element Is Visible   id=OpItem_op_description   10
-  Додати предмет   ${item}   0
+  Додати предмет   ${item}
   Wait Until Page Contains   Успішно додано   15
   Перевірити та сховати повідомлення
 
@@ -193,8 +193,8 @@ Login
   Зайти в розділ списку лотів
   ${drop_id}=  Catenate   SEPARATOR=   lot_  ${PALATA_LOT_ID}
   ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}  _edit_lot
-  Клацнути по випадаючому списку   ${drop_id}
-  Виконати дію   ${action_id}
+  Click Element   id=${drop_id}
+  Click Element   id=${action_id}
   Wait Until Element Is Visible   id=to_params   15
   Click Element  id=to_params
   Wait Until Element Is Visible   id=submit_button
@@ -214,7 +214,7 @@ Login
   : FOR    ${index}    IN RANGE   ${itemslength}
   \   Click Element   xpath=//*[contains(text(), 'Додати')]
   \   Wait Until Element Is Visible   id=OpItem_op_description   10
-  \   Додати предмет   ${items[${index}]}   ${index}
+  \   Додати предмет   ${items[${index}]}
   \   Wait Until Page Contains   Успішно додано   20
   \   Перевірити та сховати повідомлення
 
@@ -241,7 +241,7 @@ Login
     [Documentation]
     ...      ${ARGUMENTS[0]} ==  username
     ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
-    Selenium2Library.Switch browser   ${ARGUMENTS[0]}
+    Go To   ${ARGUMENTS[0]}
     Wait Until Page Contains Element    id=searchBar    30
     ${timeout_on_wait}=  Get Broker Property By Username  ${ARGUMENTS[0]}  timeout_on_wait
     ${passed}=  Run Keyword And Return Status  Wait Until Keyword Succeeds   6 x  ${timeout_on_wait} s  Шукати і знайти   ${ARGUMENTS[1]}
@@ -262,8 +262,8 @@ Login
   Зайти в розділ списку лотів
   ${drop_id}=  Catenate   SEPARATOR=   lot_  ${PALATA_LOT_ID}
   ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}  _add_files
-  Клацнути по випадаючому списку   ${drop_id}
-  Виконати дію   ${action_id}
+  Click Element   id=${drop_id}
+  Click Element   id=${action_id}
   Wait Until Element Is Visible   xpath=//input[@type='submit']   10
   ${inputID}=   convert_palata_string_to_common_string   ${documentType}
   Приєднати документ    id=${inputID}   ${filepath}
@@ -285,8 +285,8 @@ Login
     Зайти в розділ списку лотів
     ${drop_id}=  Catenate   SEPARATOR=   lot_  ${PALATA_LOT_ID}
     ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}  _add_files
-    Клацнути по випадаючому списку   ${drop_id}
-    Виконати дію   ${action_id}
+    Click Element   id=${drop_id}
+    Click Element   id=${action_id}
     Wait Until Element Is Visible   id=fileInput13   15
     Приєднати документ    id=fileInput13    ${ARGUMENTS[1]}
     Click Element  xpath=//input[@type="submit"]
@@ -502,7 +502,7 @@ Login
   [Documentation]
   ...      ${ARGUMENTS[0]} =  username
   ...      ${ARGUMENTS[1]} =  ${TENDER_UAID}
-  Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
+  Go To  ${ARGUMENTS[0]}
   Go To  ${BROKERS['palata'].syncpage}
   Go To  ${BROKERS['palata'].homepage}
   palata.Пошук тендера по ідентифікатору    ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
@@ -801,14 +801,6 @@ Login
   Wait Until Page Contains   Протокол успішно завантажений в с-му   10
   Перевірити та сховати повідомлення
 
-Клацнути по випадаючому списку
-   [Arguments]   ${id_val}
-   Click Element    id=${id_val}
-
-Виконати дію
-  [Arguments]   ${id_val}
-  Click Element   id=${id_val}
-
 Підтвердження дії в модальном вікні
   Wait Until Element Is Visible   xpath=//button[contains(., "Підтвердити")]    10
   Click Element   xpath=//button[contains(., "Підтвердити")]
@@ -822,9 +814,9 @@ Login
   Зайти в розділ списку лотів
   ${drop_id}=  Catenate   SEPARATOR=   lot_  ${PALATA_LOT_ID}
   ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}  _add_imgs
-  Клацнути по випадаючому списку   ${drop_id}
+  Click Element   id=${drop_id}
   Wait Until Page Contains    Завантажити фото   3
-  Виконати дію   ${action_id}
+  Click Element   id=${action_id}
   Wait Until Element Is Visible   id=fileUploadInput   10
   Приєднати документ    id=fileUploadInput    ${ARGUMENTS[2]}
   Відправити документи до цбд
@@ -834,8 +826,8 @@ Login
   Зайти в розділ списку лотів
   ${drop_id}=  Catenate   SEPARATOR=   lot_  ${PALATA_LOT_ID}
   ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}  _add_assets_link
-  Клацнути по випадаючому списку  ${drop_id}
-  Виконати дію   ${action_id}
+  Click Element   id=${drop_id}
+  Click Element   id=${action_id}
   Wait Until Element Is Visible   id=OpLotForm_op_assets_link   10
   Input Text   id=OpLotForm_op_assets_link  ${certificate_url}
   Sleep    2
@@ -848,8 +840,8 @@ Login
   Зайти в розділ списку лотів
   ${drop_id}=  Catenate   SEPARATOR=   lot_  ${PALATA_LOT_ID}
   ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}  _add_access_details
-  Клацнути по випадаючому списку  ${drop_id}
-  Виконати дію   ${action_id}
+  Click Element   id=${drop_id}
+  Click Element   id=${action_id}
   Wait Until Element Is Visible   id=OpLotForm_op_accessDetails   10
   Input Text   id=OpLotForm_op_accessDetails  ${accessDetails}
   Sleep    2
@@ -866,9 +858,9 @@ Login
   Зайти в розділ списку лотів
   ${drop_id}=  Catenate   SEPARATOR=   lot_  ${PALATA_LOT_ID}
   ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}  _add_vdr
-  Клацнути по випадаючому списку  ${drop_id}
+  Click Element   id=${drop_id}
   Wait Until Page Contains    Прикріпити посилання на вдр   3
-  Виконати дію   ${action_id}
+  Click Element   id=${action_id}
   Wait Until Element Is Visible   id=OpLotForm_op_vdr_link   10
   Input Text   id=OpLotForm_op_vdr_link  ${ARGUMENTS[2]}
   Sleep    3
@@ -967,9 +959,9 @@ Login
   Зайти в розділ списку лотів
   ${drop_id}=  Catenate   SEPARATOR=   lot_  ${PALATA_LOT_ID}
   ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}  _cancel_lot
-  Клацнути по випадаючому списку  ${drop_id}
+  Click Element   id=${drop_id}
   Wait Until Page Contains    Скасувати аукціон   3
-  Виконати дію    ${action_id}
+  Click Element   id=${action_id}
   Wait Until Element Is Visible   id=OpCancellation_reason_id   10
   Select From List By Label   id=OpCancellation_reason_id   ${ARGUMENTS[2]}
   Приєднати документ   id=fileInput0   ${ARGUMENTS[3]}
@@ -1025,9 +1017,9 @@ Login
   ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}   _confirm_protocol
   Wait Until Keyword Succeeds   10 x   20 s   Run Keywords
   ...   Reload Page
-  ...   AND   Клацнути по випадаючому списку  ${drop_id}
+  ...   AND   Click Element   id=${drop_id}
   ...   AND   Element Should Be Visible   id=${action_id}
-  Виконати дію   ${action_id}
+  Click Element   id=${action_id}
   Wait Until Page Contains   Учасник по лоту   10
   Wait Until Keyword Succeeds   10 x   15 s   Run Keywords
   ...   Reload Page
@@ -1050,9 +1042,9 @@ Login
   ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}   _disqualification
   Wait Until Keyword Succeeds   10 x   20 s   Run Keywords
   ...   Reload Page
-  ...   AND   Клацнути по випадаючому списку  ${drop_id}
+  ...   AND   Click Element   id=${drop_id}
   ...   AND   Element Should Be Visible   id=${action_id}
-  Виконати дію   ${action_id}
+  Click Element   id=${action_id}
   Sleep    5   Ждем отображение модального окна
   Приєднати документ    id=fileInput0    ${file_path}
 
@@ -1068,7 +1060,7 @@ Login
   ...   AND   Click Element   xpath=//*[contains(@id, '${verification}') or contains(@id,'${payment}') or contains(@id,'${active}')]
   ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}   _disqualification
   Wait Until Page Contains   Дискваліфікувати
-  Виконати дію   ${action_id}
+  Click Element   id=${action_id}
   Wait Until Element Is Visible   id=DisqualificationForm_op_title   10
   Input Text  id=DisqualificationForm_op_title   Дискваліфікація
   Input Text  id=DisqualificationForm_op_description   ${description}
@@ -1088,9 +1080,9 @@ Login
   ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}   _publish_contract
   Wait Until Keyword Succeeds   10 x   20 s   Run Keywords
   ...   Reload Page
-  ...   AND   Клацнути по випадаючому списку  ${drop_id}
+  ...   AND   Click Element   id=${drop_id}
   ...   AND   Element Should Be Visible   id=${action_id}
-  Виконати дію   ${action_id}
+  Click Element   id=${action_id}
   Wait Until Page Contains   Реєстрація контракту   10
 
 Підтвердити підписання контракту
@@ -1114,9 +1106,9 @@ Login
    ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}   _uploadprotocol
    Wait Until Keyword Succeeds   5 x   10 s   Run Keywords
    ...   Reload Page
-   ...   AND   Клацнути по випадаючому списку  ${drop_id}
+   ...   AND   Click Element   id=${drop_id}
    ...   AND   Element Should Be Visible   id=${action_id}
-   Виконати дію   ${action_id}
+   Click Element   id=${action_id}
    Wait Until Element Is Visible   id=fileInput1
    Приєднати документ   id=fileInput1   ${auction_protocol_path}
    Sleep    2
@@ -1135,8 +1127,8 @@ Login
    Зайти в розділ кваліфікація
    ${drop_id}=  Catenate   SEPARATOR=   ${PALATA_LOT_ID}   _pending.payment
    ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}   _confirm_payment
-   Клацнути по випадаючому списку     ${drop_id}
-   Виконати дію   ${action_id}
+   Click Element   id=${drop_id}
+   Click Element   id=${action_id}
    Wait Until Page Contains   Ви дійно підтверджуєте оплату?   10
    Підтвердження дії в модальном вікні
    Wait Until Page Contains   Оплата підтверджена. Завантажте та активуйте контракт   10
@@ -1191,9 +1183,9 @@ Login
    Зайти в розділ списку лотів
    ${drop_id}=  Catenate   SEPARATOR=   lot_  ${PALATA_LOT_ID}
    ${action_id}=   Catenate   SEPARATOR=   ${PALATA_LOT_ID}  _update_lot
-   Клацнути по випадаючому списку  ${drop_id}
+   Click Element   id=${drop_id}
    Wait Until Page Contains    Внести зміни   3
-   Виконати дію    ${action_id}
+   Click Element   id=${action_id}
    Wait Until Element Is Visible   id=OpLotForm_op_dgfID
    Run Keyword   Внести зміни в ${tender_field}   ${field_value}
    Click Element  xpath=//button[@type="submit"]

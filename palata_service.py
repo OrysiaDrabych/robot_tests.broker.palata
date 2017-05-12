@@ -7,14 +7,8 @@ import os
 import urllib
 
 
-def get_library():
-    return BuiltIn().get_library_instance('Selenium2Library')
-
 def convert_date_to_dash_format(date):
     return datetime.strptime(date,'%d.%m.%Y').strftime('%Y-%m-%d')
-
-def get_webdriver_instance():
-    return get_library()._current_browser()
 
 def get_cur_date():
     dnow = datetime.now()
@@ -24,9 +18,6 @@ def convert_datetime_for_delivery(isodate):
     iso_dt = parse_date(isodate)
     date_string = iso_dt.strftime("%Y-%m-%d %H:%M")
     return date_string
-
-def concat(val1,val2):
-    return val1+val2
 
 def create_question_id(field,prefix):
     return 'q_'+field+ '_' + prefix
