@@ -241,7 +241,7 @@ Login
     [Documentation]
     ...      ${ARGUMENTS[0]} ==  username
     ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
-    Go To   ${ARGUMENTS[0]}
+    Go To  ${BROKERS['palata'].homepage}
     Wait Until Page Contains Element    id=searchBar    30
     ${timeout_on_wait}=  Get Broker Property By Username  ${ARGUMENTS[0]}  timeout_on_wait
     ${passed}=  Run Keyword And Return Status  Wait Until Keyword Succeeds   6 x  ${timeout_on_wait} s  Шукати і знайти   ${ARGUMENTS[1]}
@@ -502,7 +502,6 @@ Login
   [Documentation]
   ...      ${ARGUMENTS[0]} =  username
   ...      ${ARGUMENTS[1]} =  ${TENDER_UAID}
-  Go To  ${ARGUMENTS[0]}
   Go To  ${BROKERS['palata'].syncpage}
   Go To  ${BROKERS['palata'].homepage}
   palata.Пошук тендера по ідентифікатору    ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
