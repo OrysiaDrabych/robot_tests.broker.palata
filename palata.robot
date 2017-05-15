@@ -933,7 +933,7 @@ Login
   Пошук тендера у разі наявності змін   ${TENDER['LAST_MODIFICATION_DATE']}   ${username}   ${tender_uaid}
   Показати вкладку параметри майна
   ${class}=  Catenate   SEPARATOR=   ${field}  ${doc_id}
-  Run Keyword And Return If  '${username}' == 'palata_Owner' and '${username}' == 'description'   Fail   Опис документа відсутній на юбіз
+  Run Keyword And Return If  '${username}' == 'palata_Owner' and '${field}' == 'description'   Fail   Опис документа відсутній
   ${doc_info}=   Get Text   xpath=//*[contains(@class,'${class}')]
   [return]   ${doc_info}
 
