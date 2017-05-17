@@ -345,7 +345,7 @@ Login
   Перевірити та сховати повідомлення
 
 Видалити документ
- Click Element   xpath=//a[contains(text(), 'Видалити')]
+  Click Element   xpath=//a[contains(text(), 'Видалити')]
 
 Завантажити фінансову ліцензію
   [Arguments]  @{ARGUMENTS}
