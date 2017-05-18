@@ -502,6 +502,7 @@ Login
   [Documentation]
   ...      ${ARGUMENTS[0]} =  username
   ...      ${ARGUMENTS[1]} =  ${TENDER_UAID}
+  Selenium2Library.Switch Browser   ${ARGUMENTS[0]}
   Go To  ${BROKERS['palata'].syncpage}
   Go To  ${BROKERS['palata'].homepage}
   palata.Пошук тендера по ідентифікатору    ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
@@ -1117,6 +1118,7 @@ Login
 
 Підтвердити наявність протоколу аукціону
    [Arguments]   ${user_name}   ${tender_uaid}   ${award_index}
+   [return]   ${user_name}
 
 Підтвердити постачальника
    [Arguments]   @{ARGUMENTS}
