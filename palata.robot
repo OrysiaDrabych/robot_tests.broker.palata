@@ -668,8 +668,9 @@ Login
 
 Отримати інформацію про tenderAttempts
   Показати вкладку параметри аукціону
-  ${return_value}=   Отримати текст із поля і показати на сторінці   tenderAttempts
-  [return]   ${return_value}
+  ${tenderAttempts}=   Отримати текст із поля і показати на сторінці   tenderAttempts
+  ${tenderAttempts}=   Convert To Integer   ${tenderAttempts}
+  [return]   ${tenderAttempts}
 
 Отримати інформацію про auctionPeriod.startDate
   Показати вкладку параметри аукціону
@@ -1116,9 +1117,19 @@ Login
    Wait Until Page Contains   Протокол успішно завантажено. Кваліфікація переходить в період очікування оплати  15
    Перевірити та сховати повідомлення
 
+Чи підтверджено протокол аукціону
+   [Arguments]   ${award_index}
+   Показати вкладку кваліфікація
+   ${award_status}=   Отримати текст із поля і показати на сторінці   awards[${award_index}].status
+   ${award_status}=   convert_palata_string_to_common_string  ${award_status}
+   Should Be Equal  ${award_status}  pending.payment
+
 Підтвердити наявність протоколу аукціону
    [Arguments]   ${user_name}   ${tender_uaid}   ${award_index}
-   [return]   ${user_name}
+   palata.Пошук тендера по ідентифікатору   ${user_name}   ${tender_uaid}
+   Wait Until Keyword Succeeds   3 x   10 s   Run Keywords
+   ...   Чи підтверджено протокол аукціону   ${award_index}
+   ...   AND   Reload Page
 
 Підтвердити постачальника
    [Arguments]   @{ARGUMENTS}
