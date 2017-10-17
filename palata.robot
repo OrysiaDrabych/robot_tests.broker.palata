@@ -243,7 +243,7 @@ Login
     [Documentation]
     ...      ${ARGUMENTS[0]} ==  username
     ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
-    Go To  ${BROKERS['palata'].homepage}
+    Switch Browser   ${BROWSER_ALIAS}
     Wait Until Page Contains Element    id=searchBar    30
     ${timeout_on_wait}=  Get Broker Property By Username  ${ARGUMENTS[0]}  timeout_on_wait
     ${passed}=  Run Keyword And Return Status  Wait Until Keyword Succeeds   6 x  ${timeout_on_wait} s  Шукати і знайти   ${ARGUMENTS[1]}
