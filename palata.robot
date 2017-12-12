@@ -611,7 +611,6 @@ Login
 
 Отримати інформацію із предмету
   [Arguments]   ${user_name}   ${auction_id}   ${item_id}   ${field}
-  palata.Пошук тендера по ідентифікатору   ${user_name}   ${auction_id}
   Таб Активи аукціону
   Wait Until Element Is Visible   xpath=//a[contains(text(), '${item_id}')]
   Click Link                      xpath=//a[contains(text(), '${item_id}')]
