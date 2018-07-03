@@ -1262,8 +1262,8 @@ Scroll To Element
 Перейти на головну сторінку об’єктів
   На початок сторінки
   Click Element                   id=category-select
-  Wait Until Element Is Visible   xpath=//a[@href='/privatization/asset/index']
-  Click Link                      xpath=//a[@href='/privatization/asset/index']
+  Wait Until Element Is Visible   xpath=//a[@href='/privatization/asset']
+  Click Link                      xpath=//a[@href='/privatization/asset']
   Sleep                           2
 
 Завантажити документ для видалення об'єкта МП
@@ -1482,8 +1482,8 @@ Scroll To Element
 Відкрити всі лоти
   На початок сторінки
   Click Element                   id=category-select
-  Wait Until Element Is Visible   xpath=//a[@href='/privatization/lot/index']
-  Click Link                      xpath=//a[@href='/privatization/lot/index']
+  Wait Until Element Is Visible   xpath=//a[@href='/privatization/lot']
+  Click Link                      xpath=//a[@href='/privatization/lot']
 
 
 Відкрити лот на редагування
